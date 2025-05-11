@@ -15,7 +15,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const actor = github.context.actor;
-            const repo = github.context.repo.repo;
-            const event = github.context.eventName;
+            const actor = context.actor;
+            const repo = context.repo.repo;
+            const event = context.eventName;
             core.info('Hola ${actor}, el flujo ha sido operado por un evento ${event}, en el repositorio ${repo}');
