@@ -1,0 +1,48 @@
+name: Flujo de trabajo para ejecutar los test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '1 23 * * 0-4'
+
+jobs:
+  build:
+    name: Construcción del artefacto
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonando el repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurando Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '16'
+
+      - name: Construyendo el proyecto
+        run: |
+          chmod +x gradlew
+          ./gradlew build -x test  # Excluye los tests por ahora
+
+  test:
+    name: Ejecución de tests (si build fue exitoso)
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonando el repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurando Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '16'
+
+      - name: Ejecutando los tests
+        run: |
+          chmod +x gradlew
+          ./gradlew test
