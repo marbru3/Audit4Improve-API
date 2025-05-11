@@ -15,6 +15,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            const core = require('@actions/core');
             const actor = github.context.actor;
             const repo = github.context.repo.repo;
             const event = github.context.eventName;
