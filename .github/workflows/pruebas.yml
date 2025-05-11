@@ -3,9 +3,9 @@ name: Flujo de trabajo para ejecutar los test
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ desarrollo ]
   pull_request:
-    branches: [ main ]
+    branches: [ desarrollo ]
   schedule:
     - cron: '1 23 * * 0-4'
 
