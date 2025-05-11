@@ -18,4 +18,4 @@ jobs:
             const actor = context.actor;
             const repo = context.repo.repo;
             const event = context.eventName;
-            core.info('Hola ${actor}, el flujo ha sido operado por un evento ${event}, en el repositorio ${repo}');
+            console.log(`Hola ${actor}, el flujo ha sido operado por un evento ${event}, en el repositorio ${repo}`);
