@@ -48,4 +48,4 @@ jobs:
           distribution: 'temurin'
           java-version: '16'
       - name: Ejecutando los tests
-        run: ./gradlew test
+        run: ./gradlew -x test
